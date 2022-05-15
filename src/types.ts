@@ -3,13 +3,13 @@ export interface CommandType {
     rollback: () => void;
 }
 
-export type CommandFactory = <Args extends any[]>(
-    execute: CommandType["execute"]
-) => DispatchCommand<Args>;
-
 export type DispatchCommand<Args extends any[]> = (
     ...args: Args
 ) => CommandType;
+
+export type CommandFactory = <Args extends any[]>(
+    execute: CommandType["execute"]
+) => DispatchCommand<Args>;
 
 export interface HistoryType {
     undoStack: CommandType[];
